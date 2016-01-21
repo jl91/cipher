@@ -1,0 +1,20 @@
+{
+
+    "name": "vendor/cipher",
+    "description": "Cipher Collection Package",
+    "license": "LGPL",
+    "authors": [
+        {
+            "name": "john lennon de melo fernandes",
+            "email": "johnlennon@progiro.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Cipher\\": "Cipher"
+        }
+    }
+    
+}
