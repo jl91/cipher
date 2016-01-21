@@ -49,7 +49,28 @@ class Caesar implements MappedCipherInterface
 
     public function decrypt($string)
     {
+        if (!$this->hasMap()) {
+            throw new \InvalidArgumentException('You should set the map to Caesar');
+        }
+
         $return = null;
+
+        $stringLength = strlen($string);
+
+        for ($i = 0; $i < $stringLength; $i++) {
+            $currentLetter = $string[$i];
+
+            $positionAtMap = array_search($currentLetter, $this->map);
+
+            if ($positionAtMap !== false) {
+                if (isset($this->defaultMap[$positionAtMap])) {
+
+                    $currentLetter = $this->defaultMap[$positionAtMap];
+                }
+            }
+            $return .= $currentLetter;
+        }
+
         return $return;
     }
 

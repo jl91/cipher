@@ -198,4 +198,85 @@ class CaesarTest extends PHPUnit_Framework_TestCase
         $expected = strtolower('D OLJHLUD UDSRVD PDUURP VDOWRX VREUH R FDFKRUUR FDQVDGR');
         $this->assertEquals($expected, $actual);
     }
+
+    public function testShouldDecryptStringCorrectly()
+    {
+
+        $cipher = new Caesar();
+        $map    = [
+            'z',
+            'y',
+            'x',
+            'w',
+            'v',
+            'u',
+            't',
+            's',
+            'r',
+            'q',
+            'p',
+            'o',
+            'n',
+            'm',
+            'l',
+            'k',
+            'j',
+            'i',
+            'h',
+            'g',
+            'f',
+            'e',
+            'd',
+            'c',
+            'b',
+            'a',
+        ];
+
+        $cipher->setMap($map);
+
+        $actual   = $cipher->decrypt('qlsm');
+        $expected = 'john';
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testShouldDecryptStringCorrectly2()
+    {
+
+        $cipher = new Caesar();
+        $map    = [
+
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+            'k',
+            'l',
+            'm',
+            'n',
+            'o',
+            'p',
+            'q',
+            'r',
+            's',
+            't',
+            'u',
+            'v',
+            'w',
+            'x',
+            'y',
+            'z',
+            'a',
+            'b',
+            'c',
+        ];
+
+        $cipher->setMap($map);
+
+        $actual   = $cipher->decrypt(strtolower('D OLJHLUD UDSRVD PDUURP VDOWRX VREUH R FDFKRUUR FDQVDGR'));
+        $expected = 'a ligeira raposa marrom saltou sobre o cachorro cansado';
+        $this->assertEquals($expected, $actual);
+    }
 }
