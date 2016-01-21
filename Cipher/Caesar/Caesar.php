@@ -17,7 +17,35 @@ use Cipher\MappedCipherInterface;
 
 class Caesar implements MappedCipherInterface
 {
-    private $map = [];
+    private $defaultMap = [
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'g',
+        'h',
+        'i',
+        'j',
+        'k',
+        'l',
+        'm',
+        'n',
+        'o',
+        'p',
+        'q',
+        'r',
+        's',
+        't',
+        'u',
+        'v',
+        'w',
+        'x',
+        'y',
+        'z',
+    ];
+    private $map        = [];
 
     public function decrypt($string)
     {
@@ -44,10 +72,13 @@ class Caesar implements MappedCipherInterface
         for ($i = 0; $i < $stringLength; $i++) {
             $currentLetter = $string[$i];
 
-            $positionAtMap = array_search($currentLetter, $this->map);
+            $positionAtMap = array_search($currentLetter, $this->defaultMap);
 
             if ($positionAtMap !== false) {
-                $currentLetter = $this->map[$positionAtMap];
+                if (isset($this->map[$positionAtMap])) {
+
+                    $currentLetter = $this->map[$positionAtMap];
+                }
             }
             $return .= $currentLetter;
         }
