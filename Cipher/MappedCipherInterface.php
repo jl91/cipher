@@ -15,7 +15,7 @@ namespace Cipher;
  */
 use Cipher\CipherInterface;
 
-interface MappedCipher extends CipherInterface
+interface MappedCipherInterface extends CipherInterface
 {
 
     public function setMap(array $map);
