@@ -1,6 +1,6 @@
 <?php
 
-namespace test\Rot13\Rot13;
+namespace test\Cipher\Rot13;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
