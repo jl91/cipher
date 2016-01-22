@@ -78,6 +78,7 @@ class Vigenere implements MappedCipherInterface
 
     public function decrypt($string)
     {
+
         if (!$this->hasMap()) {
             $this->buildDefaultMap();
         }
@@ -86,25 +87,21 @@ class Vigenere implements MappedCipherInterface
         $strLength = strlen($string);
         $secretKey = $this->buildKey($strLength);
 
+
         for ($i = 0; $i < $strLength; $i++) {
-            $currentLetter      = $string[$i];
-            $currentKeyPosition = $secretKey[$i];
+            $currentLetter = $string[$i];
+            $line          = $secretKey[$i];
 
+            if (isset($this->map[$line])) {
 
-            $column = array_search($currentLetter, $this->defaultMap);
-            var_dump($column);
-            exit();
-
-            if (isset($this->map[$currentKeyPosition])) {
-
-                $keyOfNewChar = array_search($currentLetter, $this->defaultMap);
+                $column = array_search($currentLetter, $this->map[$line]);
 
                 if (
-                    $keyOfNewChar !== false &&
-                    isset($this->map[$currentKeyPosition][$keyOfNewChar])
+                    $column !== false &&
+                    isset($this->defaultMap[$column])
                 ) {
 
-                    $currentLetter = $this->map[$currentKeyPosition][$keyOfNewChar];
+                    $currentLetter = $this->defaultMap[$column];
                 }
             }
 
@@ -150,19 +147,19 @@ class Vigenere implements MappedCipherInterface
         $secretKey = $this->buildKey($strLength);
 
         for ($i = 0; $i < $strLength; $i++) {
-            $currentLetter      = $string[$i];
-            $currentKeyPosition = $secretKey[$i];
+            $currentLetter = $string[$i];
+            $line          = $secretKey[$i];
 
-            if (isset($this->map[$currentKeyPosition])) {
+            if (isset($this->map[$line])) {
 
-                $keyOfNewChar = array_search($currentLetter, $this->defaultMap);
+                $column = array_search($currentLetter, $this->defaultMap);
 
                 if (
-                    $keyOfNewChar !== false &&
-                    isset($this->map[$currentKeyPosition][$keyOfNewChar])
+                    $column !== false &&
+                    isset($this->map[$line][$column])
                 ) {
 
-                    $currentLetter = $this->map[$currentKeyPosition][$keyOfNewChar];
+                    $currentLetter = $this->map[$line][$column];
                 }
             }
 

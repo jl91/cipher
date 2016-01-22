@@ -62,21 +62,21 @@ class VigenereTest extends PHPUnit_Framework_TestCase
 
     public function testShouldEncryptWithDefaultMap()
     {
-        $cipher = new Vigenere('limao');
+        $cipher = new Vigenere('faca');
         $actual = $cipher
-            ->encrypt('atacarbasesul');
+            ->encrypt('amanha');
 
-        $expected = strtolower('LBMCOCJMSSDCX');
+        $expected = 'fmcnma';
         $this->assertEquals($expected, $actual);
     }
 
     public function testShouldDecryptWithDefaultMap()
     {
-        $cipher = new Vigenere('limao');
+        $cipher = new Vigenere('faca');
         $actual = $cipher
-            ->decrypt(strtolower('LBMCOCJMSSDCX'));
+            ->decrypt('fmcnma');
 
-        $expected = 'atacarbasesul';
+        $expected = 'amanha';
         $this->assertEquals($expected, $actual);
     }
 }
