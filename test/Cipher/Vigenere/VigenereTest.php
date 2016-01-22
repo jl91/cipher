@@ -69,4 +69,14 @@ class VigenereTest extends PHPUnit_Framework_TestCase
         $expected = strtolower('LBMCOCJMSSDCX');
         $this->assertEquals($expected, $actual);
     }
+
+    public function testShouldDecryptWithDefaultMap()
+    {
+        $cipher = new Vigenere('limao');
+        $actual = $cipher
+            ->decrypt(strtolower('LBMCOCJMSSDCX'));
+
+        $expected = 'atacarbasesul';
+        $this->assertEquals($expected, $actual);
+    }
 }

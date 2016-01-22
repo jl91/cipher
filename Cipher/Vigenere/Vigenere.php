@@ -78,7 +78,40 @@ class Vigenere implements MappedCipherInterface
 
     public function decrypt($string)
     {
-        
+        if (!$this->hasMap()) {
+            $this->buildDefaultMap();
+        }
+
+        $return    = null;
+        $strLength = strlen($string);
+        $secretKey = $this->buildKey($strLength);
+
+        for ($i = 0; $i < $strLength; $i++) {
+            $currentLetter      = $string[$i];
+            $currentKeyPosition = $secretKey[$i];
+
+
+            $column = array_search($currentLetter, $this->defaultMap);
+            var_dump($column);
+            exit();
+
+            if (isset($this->map[$currentKeyPosition])) {
+
+                $keyOfNewChar = array_search($currentLetter, $this->defaultMap);
+
+                if (
+                    $keyOfNewChar !== false &&
+                    isset($this->map[$currentKeyPosition][$keyOfNewChar])
+                ) {
+
+                    $currentLetter = $this->map[$currentKeyPosition][$keyOfNewChar];
+                }
+            }
+
+            $return .= $currentLetter;
+        }
+
+        return $return;
     }
 
     private function hasMap()
